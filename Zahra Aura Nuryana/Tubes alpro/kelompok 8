@@ -1,0 +1,169 @@
+import subprocess
+from pathlib import Path
+from time import strftime
+from tkinter import Tk, Canvas, Entry, Button, PhotoImage, messagebox
+
+OUTPUT_PATH = Path(__file__).parent
+ASSETS_PATH = OUTPUT_PATH / Path(r"C:\Users\LENOVO\OneDrive\Documents\biya\build\assets\frame0")
+
+
+def guitogui():
+    window.destroy()
+    subprocess.call(["python", "C:/Users/LENOVO/OneDrive/Documents/biya/build/gui1.py"])
+
+
+def relative_to_assets(path: str) -> Path:
+    return ASSETS_PATH / Path(path)
+
+window = Tk()
+
+window.geometry("430x932")
+window.configure(bg = "#C7E4FF")
+
+canvas = Canvas(
+    window,
+    bg = "#C7E4FF",
+    height = 932,
+    width = 430,
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+)
+
+canvas.place(x = 0, y = 0)
+image_image_1 = PhotoImage(
+    file=relative_to_assets("image_1.png"))
+image_1 = canvas.create_image(
+    215.0,
+    466.5,
+    image=image_image_1
+)
+
+image_image_2 = PhotoImage(
+    file=relative_to_assets("image_2.png"))
+image_2 = canvas.create_image(
+    214.0,
+    364.0,
+    image=image_image_2
+)
+
+entry_image_1 = PhotoImage(
+    file=relative_to_assets("entry_1.png"))
+entry_bg_1 = canvas.create_image(
+    215.0,
+    466.5,
+    image=entry_image_1
+)
+entry_1 = Entry(
+    bd=0,
+    bg="#FFFFFF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_1.place(
+    x=72.0,
+    y=443.0,
+    width=286.0,
+    height=45.0
+)
+
+image_image_3 = PhotoImage(
+    file=relative_to_assets("image_3.png"))
+image_3 = canvas.create_image(
+    215.0,
+    166.0,
+    image=image_image_3
+)
+
+image_image_4 = PhotoImage(
+    file=relative_to_assets("image_4.png"))
+image_4 = canvas.create_image(
+    130.0,
+    430.0,
+    image=image_image_4
+)
+
+entry_image_2 = PhotoImage(
+    file=relative_to_assets("entry_2.png"))
+entry_bg_2 = canvas.create_image(
+    215.0,
+    560.5,
+    image=entry_image_2
+)
+entry_2 = Entry(
+    bd=0,
+    bg="#FFFFFF",
+    fg="#000716",
+    highlightthickness=0
+)
+entry_2.place(
+    x=72.0,
+    y=537.0,
+    width=286.0,
+    height=45.0
+)
+
+image_image_5 = PhotoImage(
+    file=relative_to_assets("image_5.png"))
+image_5 = canvas.create_image(
+    129.0,
+    524.0,
+    image=image_image_5
+)
+
+image_image_6 = PhotoImage(
+    file=relative_to_assets("image_6.png"))
+image_6 = canvas.create_image(
+    143.0,
+    618.0,
+    image=image_image_6
+)
+
+button_image_1 = PhotoImage(
+    file=relative_to_assets("button_1.png"))
+
+button_1 = Button(
+    image=button_image_1,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: guitogui(),
+    relief="flat"
+)
+button_1.place(
+    x=275.0,
+    y=605.0,
+    width=98.0,
+    height=27.0
+)
+
+button_image_2 = PhotoImage(
+    file=relative_to_assets("button_2.png"))
+
+def database():
+    userName= str(entry_1.get())
+    password= str(entry_2.get())
+    time_string= strftime('%H:%M:%S')  
+
+    with open("C:/Users/LENOVO/OneDrive/Documents/biya/build/assets/dbLogin/dbLogin.txt", "w") as file:
+        file.write(f" \nUser Name: {userName}\n Password : {password}\n Login Time : {time_string}\n")
+
+    window.destroy()
+    subprocess.call(["python", "C:/Users/LENOVO/OneDrive/Documents/biya/build/gui2.py"])
+
+
+button_2 = Button(
+    image=button_image_2,
+    borderwidth=0,
+    highlightthickness=0,
+    command=database,
+    relief="flat"
+)
+button_2.place(
+    x=57.0,
+    y=675.0,
+    width=316.0,
+    height=58.0
+)
+
+window.resizable(False, False)
+window.mainloop()
